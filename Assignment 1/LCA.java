@@ -61,11 +61,7 @@ public class LCA <Key extends Comparable<Key>, Value>{
  	}
 	
 	//Get method, search by key order
-	public Node get(Key key)
-	{
-		return get(root, key);
-	}
-	
+
 	public Value get(Key key){
 		Node x = root;
 		
