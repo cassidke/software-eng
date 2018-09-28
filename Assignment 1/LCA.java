@@ -4,7 +4,7 @@ public class LCA <Key extends Comparable<Key>, Value>{
 	private class Node{
 		private Key key;
 		private Value val;
-		private Node left right;
+		private Node left, right;
 		private int N;
 		
 		public Node(Key key, Value val){
@@ -34,6 +34,7 @@ public class LCA <Key extends Comparable<Key>, Value>{
 		}
 	}
 	
+	//
 	public void put(Key key, Value val){
 		root = put(root, key, val);
 	}
@@ -44,11 +45,11 @@ public class LCA <Key extends Comparable<Key>, Value>{
 			return new Node(key, val);
 		}
 		int comp = key.compareTo(x.key);
-		if(cmp < 0)
+		if(comp < 0)
 		{
 			x.left = put(x.left, key, val);
 		}
-		else if(cmp > 0)
+		else if(comp > 0)
 		{
 			x.right = put(x.right, key, val);
 		}else
@@ -58,4 +59,26 @@ public class LCA <Key extends Comparable<Key>, Value>{
 		x.N = 1 + size(x.left) + size(x.right);
 		return x;
  	}
+	
+	//Get method, search by key order
+	public Value get(Key key){
+		Node x = root;
+		
+		while(x != null){
+			
+			int comp = key.compareTo(x.key);
+			if(comp < 0)
+			{
+				x = x.left;
+			}
+			else if(comp > 0)
+			{
+				x = x.right;
+			}
+			else{
+				return x.val;
+			}
+		}
+		return null;
+	}
 }
