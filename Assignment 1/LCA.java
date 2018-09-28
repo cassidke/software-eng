@@ -34,7 +34,7 @@ public class LCA <Key extends Comparable<Key>, Value>{
 		}
 	}
 	
-	//
+	//Put method, inserts value into tree
 	public void put(Key key, Value val){
 		root = put(root, key, val);
 	}
@@ -61,6 +61,11 @@ public class LCA <Key extends Comparable<Key>, Value>{
  	}
 	
 	//Get method, search by key order
+	public Node get(Key key)
+	{
+		return get(root, key);
+	}
+	
 	public Value get(Key key){
 		Node x = root;
 		
@@ -78,6 +83,40 @@ public class LCA <Key extends Comparable<Key>, Value>{
 			else{
 				return x.val;
 			}
+		}
+		return null;
+	}
+	
+	public Node search(Node root, Key value1, Key value2)
+	{
+		if(root != null &&(get(value1)!=null &&get(value2)!=null))
+		{
+			
+			if(root.key.compareTo(value1) == 0 || root.key.compareTo(value2) == 0)
+			{
+				return root;
+			}
+
+			Node leftBranch = search(root.left, value1,value2);
+			Node rightBranch = search(root.right,value1,value2);
+			//If they both have an answer this is the LCA 
+			
+			if(leftBranch != null && rightBranch != null)
+			{
+				return root;
+			}
+			//Find & return node with value or return null if doesn't exist
+			if(leftBranch != null) 
+			{
+				return leftBranch;
+
+			}
+			else if(rightBranch != null)
+			{
+				return rightBranch;
+			}
+			else 
+				return null;
 		}
 		return null;
 	}
