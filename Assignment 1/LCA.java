@@ -1,17 +1,18 @@
 public class LCA <Key extends Comparable<Key>, Value>{
-	private Node root;
+	public Node root;
 	
-	private class Node{
-		private Key key;
-		private Value val;
-		private Node left, right;
-		private int N;
+	public class Node{
+		public Key key;
+		public Value val;
+		public Node left, right;
+		public int N;
 		
 		public Node(Key key, Value val){
 			this.val = val;
 			this.key = key;
 		}
 	}
+	
 	
 	//Is empty implementation
 	public boolean isEmpty(){
