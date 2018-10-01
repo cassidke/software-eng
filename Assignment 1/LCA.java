@@ -19,28 +19,25 @@ public class LCA <Key extends Comparable<Key>, Value>{
 		return size() == 0;
 	}
 	
-	public int size()
+	public int size() 
 	{
-		return size(root);
-	}
+		  return(size(root)); 
+		}
+		private int size(Node node) 
+		{ 
+		  if (node == null) return(0); 
+		  else { 
+		    return(size(node.left) + 1 + size(node.right)); 
+		  } 
+		} 
 	
-	public int size(Node x)
-	{
-		if(x == null)
-		{
-			return 0;
-		}
-		else{
-			return x.N;
-		}
-	}
 	
 	//Put method, inserts value into tree
 	public void put(Key key, Value val){
 		root = put(root, key, val);
 	}
 	
-	public Node put(Node x, Key key, Value val){
+	private Node put(Node x, Key key, Value val){
 		if(x == null)
 		{
 			return new Node(key, val);
