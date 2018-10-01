@@ -14,8 +14,10 @@ public class LCA <Key extends Comparable<Key>, Value>{
 	}
 	
 	
+	
 	//Is empty implementation
-	public boolean isEmpty(){
+	public boolean isEmpty()
+	{
 		return size() == 0;
 	}
 	
@@ -30,7 +32,6 @@ public class LCA <Key extends Comparable<Key>, Value>{
 		    return(size(node.left) + 1 + size(node.right)); 
 		  } 
 		} 
-	
 	
 	//Put method, inserts value into tree
 	public void put(Key key, Value val){
@@ -81,6 +82,7 @@ public class LCA <Key extends Comparable<Key>, Value>{
 		return null;
 	}
 	
+	//Function to find lowest common ancestor
 	public Node search(Node root, Key value1, Key value2)
 	{
 		if(root != null &&(get(value1)!=null &&get(value2)!=null))
