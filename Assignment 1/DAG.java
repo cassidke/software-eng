@@ -23,6 +23,7 @@ public class DAG
 		this.E = 0;
 		indegree = new int[V];
 		marked = new boolean[V];
+		stack = new boolean[V];
 		adj = (ArrayList<Integer>[]) new ArrayList[V];
 		
 		for(int v = 0; v < V; v++)
@@ -112,7 +113,7 @@ public class DAG
 		marked[v] = true;
 		stack[v] = true;
 		
-		for(int w: adj(v))
+		for(int w : adj(v))
 		{
 			if(!marked[w])
 			{

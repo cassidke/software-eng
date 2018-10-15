@@ -23,6 +23,12 @@ public class DAG_Test {
 		assertEquals(adj, graph.adj(4).toString());
 	}
 	
+	@Test(expected=Exception.class)
+	public void exceptionTest(){
+		//Can't make a directed graph with less than 0 vertices
+		DAG graph = new DAG(-5);
+	}
+	
 	@Test
 	public void addEdge()
 	{
@@ -70,13 +76,43 @@ public class DAG_Test {
 	@Test 
 	public void testV()
 	{
-		
+		DAG graph = new DAG(6);
+		assertEquals(6, graph.V());
 	}
 	
 	@Test
 	public void testAdj()
 	{
 		
+	}
+	
+	@Test
+	public void testforCycle()
+	{
+		DAG graph = new DAG(10);
+		
+		graph.addEdge(0, 1);
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 0);
+		graph.addEdge(2, 3);
+		graph.addEdge(3, 4);
+		
+		graph.findCycle(0);
+		
+		assertTrue(graph.hasCycle());
+	}
+	
+	@Test
+	public void testAcyclicGraph()
+	{
+		DAG graph = new DAG(10);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		
+		graph.findCycle(1);
+		assertFalse(graph.hasCycle());
 	}
 
 }
