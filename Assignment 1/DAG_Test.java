@@ -2,12 +2,25 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class DAGTest {
+public class DAG_Test {
 
 	@Test
 	public void testDAG()
 	{
-		fail("Not yet implemented");
+		DAG graph = new DAG(10);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(2, 5);
+		graph.addEdge(4, 6);
+		graph.addEdge(4, 7);
+		
+		assertEquals(1, graph.indegree(4));
+		assertEquals(2, graph.outdegree(4));
+		assertEquals(5, graph.E());
+		assertEquals(10, graph.V());
+		String adj = "[6, 7]";
+		assertEquals(adj, graph.adj(4).toString());
 	}
 	
 	@Test
@@ -28,6 +41,12 @@ public class DAGTest {
 	
 	@Test
 	public void testIndegree()
+	{
+		
+	}
+	
+	@Test
+	public void testOutdegree()
 	{
 		
 	}

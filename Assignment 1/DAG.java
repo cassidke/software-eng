@@ -6,6 +6,7 @@ public class DAG
 	private int E;						//no. edges
 	private ArrayList<Integer>[] adj;   //adj[V] = adjacency list for vertex V
 	private int [] indegree;			//indegree[V] = indegree of vertex V
+	private int [] outdegree;			//outdegree[V] = outdegree of vertex V
 	private boolean [] marked;			//list of visited vertices
 	
 	
@@ -65,11 +66,32 @@ public class DAG
 			return 1;
 		}
 	}
-	//Returns number of directed edges from current vertex
+	
+	//Returns number of directed edges to vertex v
 	public int indegree(int v)
 	{
-		validateVertex(v);
-		return indegree[v];
+		if(validateVertex(v) > 0)
+		{
+			return indegree[v];
+		}
+		else
+		{
+			return -1;
+		}
+		
+	}
+	
+	//Returns number of directed edges from vertex v
+	public int outdegree(int v)
+	{
+		if(validateVertex(v) > 0)
+		{
+			return adj[v].size();
+		}
+		else
+		{
+			return -1;
+		}
 	}
 	
 	//Returns the adjacent vertices to v
