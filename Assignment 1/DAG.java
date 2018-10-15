@@ -37,20 +37,30 @@ public class DAG
 	//Adds directed edge from v to w
 	public void addEdge(int v, int w)
 	{
-		validateVertex(v);
-		validateVertex(w);
-		adj[v].add(w);
-		indegree[w]++;
-		E++;
+		if((validateVertex(v) > 0) && (validateVertex(w) > 0))
+		{
+			adj[v].add(w);
+			indegree[w]++;
+			E++;
+		}
+		else
+		{
+			System.out.println("Please enter numbers between 0 and " + (V-1));
+		}		
 	}
 	
-	private void validateVertex(int v)
+	private int validateVertex(int v)
 	{
 		if(v < 0 || v >= V)
 		{
-			throw new IllegalArgumentException("Vertex " + v + " is not between 0 and " + (V-1));
+			return -1;
+		}
+		else
+		{
+			return 1;
 		}
 	}
+	
 	//Returns number of directed edges from current vertex
 	public int indegree(int v)
 	{
