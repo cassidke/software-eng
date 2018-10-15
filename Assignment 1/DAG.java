@@ -8,7 +8,7 @@ public class DAG
 	private int [] indegree;			//indegree[V] = indegree of vertex V
 	private boolean [] marked;			//list of visited vertices
 	
-	//DAG constructor
+	
 	public DAG(int V)
 	{
 		if(V < 0)
@@ -31,7 +31,12 @@ public class DAG
 	//Returns current vertex
 	public int V()
 	{
-		return 0;
+		return V;
+	}
+	
+	public int E()
+	{
+		return E;
 	}
 	
 	//Adds directed edge from v to w
@@ -60,7 +65,6 @@ public class DAG
 			return 1;
 		}
 	}
-	
 	//Returns number of directed edges from current vertex
 	public int indegree(int v)
 	{

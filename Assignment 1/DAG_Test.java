@@ -2,11 +2,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+public class DAGTest {
 
-public class DAG_Test{
-	
 	@Test
 	public void testDAG()
 	{
@@ -16,7 +13,17 @@ public class DAG_Test{
 	@Test
 	public void addEdge()
 	{
+		DAG graph = new DAG(5);
 		
+		graph.addEdge(1,2);
+
+		//As negative, will print a system error and not addEdge
+		graph.addEdge(-1, -6);
+		
+		//This will not addEdge as 12 > 5
+		graph.addEdge(3, 12);
+		
+		assertEquals(1, graph.E());
 	}
 	
 	@Test
@@ -36,4 +43,5 @@ public class DAG_Test{
 	{
 		
 	}
+
 }
