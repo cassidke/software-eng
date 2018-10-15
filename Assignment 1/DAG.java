@@ -7,7 +7,9 @@ public class DAG
 	private ArrayList<Integer>[] adj;   //adj[V] = adjacency list for vertex V
 	private int [] indegree;			//indegree[V] = indegree of vertex V
 	private int [] outdegree;			//outdegree[V] = outdegree of vertex V
-	private boolean [] marked;			//list of visited vertices
+	private boolean marked [];			//list of visited vertices
+	private boolean hasCycle;			//True if graph has cycle
+	private boolean stack [];			//
 	
 	
 	public DAG(int V)
@@ -98,6 +100,31 @@ public class DAG
 	public Iterable<Integer> adj(int v)
 	{
 		return adj[v];
+	}
+	
+	public boolean hasCycle()
+	{
+		return hasCycle;
+	}
+	
+	public void findCycle(int v)
+	{
+		marked[v] = true;
+		stack[v] = true;
+		
+		for(int w: adj(v))
+		{
+			if(!marked[w])
+			{
+				findCycle(w);
+			}
+			else if(stack[w])
+			{
+				hasCycle = true;
+				return;
+			}
+		}
+		stack[v] = false;
 	}
 	
 }
