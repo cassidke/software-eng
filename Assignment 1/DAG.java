@@ -133,7 +133,52 @@ public class DAG
 	//Method to implement lowest common ancestor
 	public int findLCA(int v, int w)
 	{
-		return -1;
+		findCycle(0);
+		
+		if(hasCycle) //Graph is not DAG
+		{
+			return -1;
+		}
+		else if(validateVertex(v) < 0 || validateVertex(v) < 0)
+		{
+			//Not valid vertices, ie. non-negative
+			return -1;
+		}
+		else if(E == 0)
+		{
+			//Graph has no edges, ie. empty
+			return -1;
+		}
+		
+		DAG reverse = reverse();
+		
+		ArrayList<Integer> array1 = reverse.BFS(v);
+		ArrayList<Integer> array2 = reverse.BFS(w);
+		ArrayList<Integer> commonAncestors = new ArrayList<Integer>();
+		
+		boolean found = false;
+		
+		for(int i = 0; i < array1.size(); i++)
+		{
+			for(int j = 0; j < array2.size(); j++)
+			{
+				if(array1.get(i) == array2.get(j))
+				{
+					commonAncestors.add(array1.get(i));
+					found = true;
+				}
+			}
+		}
+		
+		if(found)
+		{
+			//Return first element in list - Lowest Common Ancestor
+			return commonAncestors.get(0);
+		}
+		else
+		{
+			return -1; //None found
+		}
 	}
 	
 	//Prints BFS(Breadth-Frist search) from source s
@@ -172,6 +217,13 @@ public class DAG
 	public DAG reverse()
 	{
 		DAG reverse = new DAG(V);
+		for(int v = 0; v <V; v++)
+		{
+			for(int w : adj(v))
+			{
+				reverse.addEdge(w, v);
+			}		
+		}
 		return reverse;
 	}
 }
