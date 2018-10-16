@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class DAG
 {
@@ -138,6 +140,31 @@ public class DAG
 	public ArrayList<Integer> BFS(int s)
 	{
 		ArrayList<Integer> order = new ArrayList<Integer>();
+		boolean visited[] = new boolean[V]; //Marks vertices as not visiet
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		
+		visited[s] = true;
+		queue.add(s);
+		
+		while(queue.size() != 0)
+		{
+			s = queue.poll(); //Sets s to the head of the list
+			order.add(s);
+			
+			//Find adjacent vertices to s. If not visited,
+			//mark as visited (true) and enqueue
+			Iterator<Integer> i = adj[s].listIterator();
+			
+			while(i.hasNext())
+			{
+				int n = i.next();
+				if(!visited[n])
+				{
+					visited[n] = true;
+					queue.add(n);
+				}
+			}
+		}
 		return order;
 	}
 	
