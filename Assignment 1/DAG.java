@@ -139,7 +139,7 @@ public class DAG
 		{
 			return -1;
 		}
-		else if(validateVertex(v) < 0 || validateVertex(v) < 0)
+		else if(validateVertex(v) < 0 || validateVertex(w) < 0)
 		{
 			//Not valid vertices, ie. non-negative
 			return -1;
@@ -181,11 +181,11 @@ public class DAG
 		}
 	}
 	
-	//Prints BFS(Breadth-Frist search) from source s
+	//Prints BFS(Breadth-First search) from source s
 	public ArrayList<Integer> BFS(int s)
 	{
 		ArrayList<Integer> order = new ArrayList<Integer>();
-		boolean visited[] = new boolean[V]; //Marks vertices as not visiet
+		boolean visited[] = new boolean[V]; //Marks vertices as not visit
 		LinkedList<Integer> queue = new LinkedList<Integer>();
 		
 		visited[s] = true;

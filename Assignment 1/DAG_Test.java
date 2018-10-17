@@ -25,7 +25,9 @@ public class DAG_Test {
 	
 	@Test(expected=Exception.class)
 	public void exceptionTest(){
+		
 		//Can't make a directed graph with less than 0 vertices
+		
 		DAG graph = new DAG(-5);
 	}
 	
@@ -81,9 +83,29 @@ public class DAG_Test {
 	}
 	
 	@Test
+	public void testE(){
+		
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		
+		assertEquals(3, graph.E());
+	}
+	
+	@Test
 	public void testAdj()
 	{
+		DAG graph = new DAG(5);
 		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		graph.addEdge(4, 3);
+		
+		String adj = "[4]";
+		assertEquals(adj, graph.adj(2).toString());
 	}
 	
 	@Test
@@ -156,8 +178,14 @@ public class DAG_Test {
 		assertEquals(0, graph.findLCA(2, 1));
 		assertEquals(3, graph.findLCA(2, 3));
 		assertEquals(2, graph.findLCA(4, 5));
-		//
+		
+		//Check for non-present vertex
 		assertEquals(-1, graph.findLCA(8, 2));
+		
+		//Check for negative vertex
+		assertEquals(-1, graph.findLCA(-2, 3));
+		assertEquals(-1, graph.findLCA(3, -2));
+		assertEquals(-1, graph.findLCA(-2, -3));
 	}
 	
 	@Test
@@ -190,6 +218,15 @@ public class DAG_Test {
 		
 		assertEquals(3, graph.findLCA(3, 3));
 		
+	}
+	
+	@Test
+	public void testLCAForEmptyDAG()
+	{
+		DAG graph = new DAG(5);
+		assertEquals(-1, graph.findLCA(0, 2));
+		assertEquals(-1, graph.findLCA(0, 4));
+		assertEquals(-1, graph.findLCA(0, 0));
 	}
 	
 }
