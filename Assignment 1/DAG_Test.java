@@ -115,4 +115,31 @@ public class DAG_Test {
 		assertFalse(graph.hasCycle());
 	}
 	
+	@Test
+	public void testLCA()
+	{
+		DAG graph = new DAG(10);
+		
+		//--------3---4----8--
+		//---0--1-------6----7
+		//--------2---5-------
+		
+		graph.addEdge(0, 1);
+		graph.addEdge(1, 3);
+		graph.addEdge(1, 2);
+		graph.addEdge(3, 4);
+		graph.addEdge(2, 5);
+		graph.addEdge(5, 6);
+		graph.addEdge(4, 6);
+		graph.addEdge(6, 7);
+		graph.addEdge(4, 8);
+		graph.addEdge(8, 7);
+		
+		assertEquals(1, graph.findLCA(4, 5));
+		assertEquals(8, graph.findLCA(7, 8));
+		assertEquals(6, graph.findLCA(6, 7));
+	}
+	
+	
+	
 }
